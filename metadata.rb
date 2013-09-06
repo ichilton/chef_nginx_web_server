@@ -1,8 +1,10 @@
 name             'nginx-web-server'
-maintainer       'YOUR_NAME'
-maintainer_email 'YOUR_EMAIL'
+maintainer       'Ian Chilton'
+maintainer_email 'ian@ichilton.co.uk'
 license          'All rights reserved'
-description      'Installs/Configures nginx-web-server'
+description      'Installs/Configures the Nginx Web Server'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.0'
+
+supports 'ubuntu'
 
