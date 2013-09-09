@@ -1,4 +1,4 @@
-name             'nginx-web-server'
+name             'nginx_web_server'
 maintainer       'Ian Chilton'
 maintainer_email 'ian@ichilton.co.uk'
 license          'All rights reserved'
