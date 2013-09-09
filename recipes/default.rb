@@ -67,13 +67,13 @@ end
 service 'nginx' do
   provider Chef::Provider::Service::Init::Debian
   action :stop
-  only_if Dir.glob('/etc/rc2.d/S??nginx').count > 0
+  only_if { ::Dir.glob('/etc/rc2.d/S??nginx').count > 0 }
 end
 
 # Disable service (disabling with chef creates /etc/rcX.d/K20nginx links):
 execute 'disable-nginx' do
   command "update-rc.d -f nginx remove"
-  only_if Dir.glob('/etc/rc2.d/S??nginx').count > 0
+  only_if { ::Dir.glob('/etc/rc2.d/S??nginx').count > 0 }
 end
 
 service 'nginx' do
