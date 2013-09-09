@@ -10,8 +10,8 @@ env PID=/var/run/nginx.pid
  
 expect fork
 
-#respawn
-#respawn limit 10 5
+respawn
+respawn limit 10 5
 
 pre-start script
         $DAEMON -t
