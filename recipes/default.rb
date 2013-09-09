@@ -76,18 +76,17 @@ execute 'disable-nginx' do
   only_if Dir.glob('/etc/rc2.d/S??nginx').count > 0
 end
 
-#service 'nginx' do
-#  provider Chef::Provider::Service::Upstart
-#  supports :restart => true, :start => true, :stop => true
-#end
+service 'nginx' do
+  provider Chef::Provider::Service::Upstart
+  supports :restart => true, :start => true, :stop => true
+end
 
-#template "nginx-upstart.conf" do
-#  path "/etc/init/nginx.conf"
-#  source "nginx-upstart.conf.erb"
-#  owner "root"
-#  group "root"
-#  mode "0644"
-#  notifies :restart, resources(:service => "nginx")
-#end
-
+template 'nginx-upstart.conf' do
+  path '/etc/init/nginx.conf'
+  source 'nginx-upstart.conf.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+  notifies :restart, resources(:service => 'nginx')
+end
 
