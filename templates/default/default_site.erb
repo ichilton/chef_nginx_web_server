@@ -1,0 +1,8 @@
+server {
+  server_name <%= node[:hostname] ?>;
+
+  location / {
+    root <%= node[:nginx_web_server][:default_site][:root_dir] ?>;
+    index index.html index.htm;
+  }
+}
