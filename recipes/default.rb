@@ -63,19 +63,17 @@ file "#{node[:nginx_web_server][:default_site][:root_dir]}/index.html" do
   mode 00644
 end
 
-if Dir.glob('/etc/rc2.d/S??nginx').count > 0
-  Chef::Log.info 'NGINX DEBUG!!'
+# Stop service:
+service 'nginx' do
+  provider Chef::Provider::Service::Init::Debian
+  action :stop
+  only_if Dir.glob('/etc/rc2.d/S??nginx').count > 0
+end
 
-  # Stop service:
-  service 'nginx' do
-    provider Chef::Provider::Service::Init::Debian
-    action [:stop]
-  end
-
-  # Disable service (disabling with chef creates /etc/rcX.d/K20nginx links):
-  execute 'disable-nginx' do
-    command "update-rc.d -f nginx remove"
-  end
+# Disable service (disabling with chef creates /etc/rcX.d/K20nginx links):
+execute 'disable-nginx' do
+  command "update-rc.d -f nginx remove"
+  only_if Dir.glob('/etc/rc2.d/S??nginx').count > 0
 end
 
 #service 'nginx' do
