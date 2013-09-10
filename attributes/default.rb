@@ -16,3 +16,4 @@ default[:nginx_web_server][:default_site][:root_dir] = '/usr/share/nginx/html'
 
 default[:nginx_web_server][:worker_processes] = 1
 default[:nginx_web_server][:worker_connections] = 1024
+default[:nginx_web_server][:keepalive_timeout] = 15
