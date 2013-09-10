@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: nginx-web-server
+# Cookbook Name:: nginx_web_server
 # Attributes:: default
 #
 
@@ -13,3 +13,6 @@ default[:nginx_web_server][:log_dir] = '/var/log/nginx'
 
 default[:nginx_web_server][:default_site][:enabled] = true
 default[:nginx_web_server][:default_site][:root_dir] = '/usr/share/nginx/html'
+
+default[:nginx_web_server][:worker_processes] = 1
+default[:nginx_web_server][:worker_connections] = 1024
