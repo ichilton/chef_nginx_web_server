@@ -18,6 +18,8 @@ http {
 
   access_log      <%= "#{node[:nginx_web_server][:log_dir]}/access.log" %> main;
 
+  server_names_hash_bucket_size 64;
+
   sendfile        on;
   #tcp_nopush     on;
 
