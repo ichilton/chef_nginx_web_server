@@ -34,7 +34,7 @@ end
   end
 end
 
-if default[:nginx_web_server][:default_site][:enabled]
+if node[:nginx_web_server][:default_site][:enabled]
   template 'default_site' do
     path "#{node[:nginx_web_server][:config_dir]}/sites-available/default_site"
     source 'default_site.erb'
