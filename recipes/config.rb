@@ -34,17 +34,19 @@ end
   end
 end
 
-template 'default_site' do
-  path "#{node[:nginx_web_server][:config_dir]}/sites-available/default_site"
-  source 'default_site.erb'
-  owner 'root'
-  group 'root'
-  mode '0644'
-  notifies :restart, resources(:service => 'nginx')
-end
-
-link "#{node[:nginx_web_server][:config_dir]}/sites-enabled/default_site" do
-  to "#{node[:nginx_web_server][:config_dir]}/sites-available/default_site"
+if default[:nginx_web_server][:default_site][:enabled]
+  template 'default_site' do
+    path "#{node[:nginx_web_server][:config_dir]}/sites-available/default_site"
+    source 'default_site.erb'
+    owner 'root'
+    group 'root'
+    mode '0644'
+    notifies :restart, resources(:service => 'nginx')
+  end
+  
+  link "#{node[:nginx_web_server][:config_dir]}/sites-enabled/default_site" do
+    to "#{node[:nginx_web_server][:config_dir]}/sites-available/default_site"
+  end
 end
 
 file "#{node[:nginx_web_server][:config_dir]}/conf.d/default.conf" do
